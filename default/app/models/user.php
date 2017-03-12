@@ -1,10 +1,17 @@
 <?php
 
 /**
- * 
+ * Clase para manejar los datos del usuario, tabla 'user'
  */
 class User extends ActiveRecord {
 
+    /**
+     * Guarda un usuario y sube la foto de un usuario.
+     * 
+     * @param array $data Arreglo con los datos de usuario
+     * @return boolean
+     * @throws Exception
+     */
     public function saveWithPhoto($data) {
         //Inicia la transacción
         $this->begin();
@@ -29,30 +36,38 @@ class User extends ActiveRecord {
         }
     }
 
+    /**
+     * Sube y actualiza la foto del usuario.
+     * 
+     * @return boolean | null
+     */
     public function updatePhoto() {
         if ($photo = $this->uploadPhoto('photo')) {
-            //Actualiza el campo foto
+            //Actualiza el campo photo
             $this->photo = $photo;
-            if ($this->update()) {
-                return true;
-            } else {
-
-                return false;
-            }
+            return $this->update();
         }
     }
 
-    public function uploadPhoto($image_field) {
-        $file = Upload::factory($image_field, 'image');
+    /**
+     * Sube la foto y retorna el nombre del archivo generado.
+     * 
+     * @param string $imageField
+     * @return string|false
+     */
+    public function uploadPhoto($imageField) {
+        //Usamos el adapter 'image'
+        $file = Upload::factory($imageField, 'image');
+        $fileName = false;
         //le asignamos las extensiones a permitir
         $file->setExtensions(array('jpg', 'png', 'gif'));
+        //Intenta subir el arhivo
         if ($file->isUploaded()) {
-            if ($file_name = $file->saveRandom()) {
-                return $file_name;
-            }
-        } else {
-            return false;
+            //Lo guarda usando un nombre de archivo aleatorio
+            $fileName = $file->saveRandom();
         }
+        
+        return $fileName;
     }
 
 }
