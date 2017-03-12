@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset=<?= APP_CHARSET ?> >
+        <title>KumbiaPHP Framework</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS using skeleton
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="/css/normalize.css">
+        <link rel="stylesheet" href="/css/skeleton.css">
+        <!-- Custom css -->
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class="container">           
+            <div class="row">
+                <div class="el column">
+                    <?php View::content() ?> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

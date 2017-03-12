@@ -1,0 +1,10 @@
+upload-image-and-data:
+  container_name: upload-image-and-data
+  dockerfile: Dockerfile
+  build: .  
+  ports:
+   - "8081:80"
+  volumes:
+   - .:/var/www  
+  external_links:
+   - mysql-dev:mysql

@@ -1,0 +1,34 @@
+<h1>Actualizar foto</h1>
+<?php View::content() ?>
+<div class="row">
+    <div class="six columns">
+        <?= Html::img("upload/{$user->photo}") ?>
+    </div>
+    <div class="six columns">
+        <label for="user_name">Nombre</label>
+        <?= Form::text('user.name', 'class="u-full-width" disabled') ?>        
+
+        <label for="user_email">Correo electrónico</label>
+        <?= Form::email('user.email', 'class="u-full-width" disabled') ?>
+
+        <label for="user_age">Edad</label>
+        <?= Form::number('user.age', 'disabled') ?>   
+    </div>   
+</div>
+<?= Form::openMultipart() ?>
+<?= Form::hidden('user.id') ?>
+<div class="row">
+    <div class="six columns">
+        <div class="row">
+            <div class="six columns">
+                <label for="photo">Seleccionar otra foto</label>
+                <?= Form::file('photo') ?>        
+            </div>   
+        </div>    
+    </div>   
+</div>
+<input class="button-primary" value="Actualizar" type="submit">
+<?= Form::close() ?>
+
+
+

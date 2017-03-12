@@ -1,0 +1,30 @@
+<h1>Crear usuario</h1>
+<?= Html::linkAction('', 'Listar usuarios', 'class="button"') ?>
+<?php View::content() ?>
+<?= Form::openMultipart() ?>
+<div class="row">
+    <div class="six columns">
+        <label for="user_name">Nombre</label>
+        <?= Form::text('user.name', 'class="u-full-width" required') ?>        
+    </div>   
+</div>
+<div class="row">    
+    <div class="six columns">
+        <label for="user_email">Correo electrónico</label>
+        <?= Form::email('user.email','class="u-full-width" placeholder="user@mailbox.com"  required') ?>
+    </div>
+</div>
+<div class="row">
+    <div class="six columns">
+        <label for="user_age">Edad</label>
+        <?= Form::number('user.age', 'required') ?>        
+    </div>   
+</div>
+<div class="row">
+    <div class="six columns">
+        <label for="photo">Foto de perfil</label>
+        <?= Form::file('photo') ?>        
+    </div>   
+</div>
+<input class="button-primary" value="Enviar" type="submit">
+<?= Form::close() ?>

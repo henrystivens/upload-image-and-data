@@ -1,0 +1,29 @@
+<h1>Lista de usuarios</h1>
+<?= Html::linkAction('create', 'Crear', 'class="button"') ?>
+<?php View::content() ?>
+<?php if (isset($data->items)) { ?>
+    <table class="u-full-width">
+        <thead>
+            <tr>            
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Correo</th>
+                <th>Foto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($data->items as $item) { ?>
+                <tr>
+                    <td><?= $item->name ?></td>
+                    <td><?= $item->age ?></td>
+                    <td><?= $item->email ?></td>
+                    <td><?= $item->photo ?></td>
+                    <td><?= Html::linkAction("edit/$item->id", 'Editar') ?> | <?= Html::linkAction("update_photo/$item->id", 'Actualizar foto') ?></td>
+                </tr> 
+            <?php } ?>        
+        </tbody>
+    </table>
+<?php } else { ?>
+    <h2>No hay ningún registro</h2>
+<?php } ?>
