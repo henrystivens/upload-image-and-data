@@ -41,6 +41,7 @@ class UserController extends AppController {
         $this->user = (new User)->find((int) $id);
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
+            //Intenta actualizar la foto
             if (!$this->user->updatePhoto()) {
                 //se hacen persistente los datos en el formulario
                 $this->user = Input::post('user');
