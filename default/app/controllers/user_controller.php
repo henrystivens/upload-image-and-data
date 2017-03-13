@@ -2,7 +2,7 @@
 
 class UserController extends AppController {
 
-    public function index($page = 1) {
+    public function index(int $page = 1) {
         $this->data = (new User)->paginate("page: $page", 'order: id desc');
     }
 
