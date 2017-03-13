@@ -17,7 +17,7 @@ class User extends ActiveRecord {
         $this->begin();
         if ($this->create($data)) {
             //Intenta actualizar la foto
-            if($this->updatePhoto()){
+            if ($this->updatePhoto()){
                 //Se confirma la transacción
                 $this->commit();
                 return true;
@@ -58,7 +58,7 @@ class User extends ActiveRecord {
             //Lo guarda usando un nombre de archivo aleatorio y lo retorna.
             return $file->saveRandom();
         }
-
+        //Si falla al subir
         return false;
     }
 

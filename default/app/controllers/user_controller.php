@@ -2,7 +2,7 @@
 
 class UserController extends AppController {
 
-    public function index(int $page = 1) {
+    public function index(int $page = 1) { //validación 'int' con php7
         $this->data = (new User)->paginate("page: $page", 'order: id desc');
     }
 
@@ -22,7 +22,7 @@ class UserController extends AppController {
         }
     }
 
-    public function edit(int $id) {
+    public function edit(int $id) { //validación 'int' con php7
         //Carga los datos del usuario
         $this->user = (new User)->find($id);
         //se verifica si se ha enviado via POST los datos
@@ -39,7 +39,7 @@ class UserController extends AppController {
         }
     }
 
-    public function update_photo(int $id) {
+    public function update_photo(int $id) { //validación 'int' con php7
         //Carga los datos del usuario
         $this->user = (new User)->find($id);
         //se verifica si se ha enviado via POST los datos
