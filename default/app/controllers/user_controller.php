@@ -1,10 +1,6 @@
 <?php
 
 class UserController extends AppController {
-    
-    public function before_filter() {
-        session_start();
-    }
 
     public function index($page = 1) {
         $this->data = (new User)->paginate("page: $page", 'order: id desc');
@@ -12,27 +8,20 @@ class UserController extends AppController {
 
     public function create() {
         if (Input::hasPost('user')) {
-            try {
-                $obj = new User;
-                //En caso que falle la operación de guardar
-                if (!$obj->saveWithPhoto(Input::post('user'))) {
-                    //se hacen persistente los datos en el formulario
-                    $this->data = Input::post('user');
-                    return;
-                }
-            } catch (Exception $e) {
+            $obj = new User;
+            //En caso que falle la operación de guardar
+            if (!$obj->saveWithPhoto(Input::post('user'))) {
+                //se hacen persistente los datos en el formulario
                 $this->data = Input::post('user');
-                Flash::error("Excepción: {$e->getMessage()}");
                 return;
             }
+
             Flash::valid('Usuario creado');
             return Redirect::to();
-        }
-        // Sólo es necesario para el autoForm
-        $this->data = new User;
+        }        
     }
 
-    public function edit($id) {
+    public function edit(int $id) {
         $this->user = (new User)->find((int) $id);
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
@@ -48,7 +37,7 @@ class UserController extends AppController {
         }
     }
 
-    public function update_photo($id) {
+    public function update_photo(int $id) {
         $this->user = (new User)->find((int) $id);
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
