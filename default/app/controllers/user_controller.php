@@ -2,11 +2,12 @@
 
 class UserController extends AppController {
 
-    public function index($page = 1) {
+    public function index($page = 1) {        
         $this->data = (new User)->paginate("page: $page", 'order: id desc');
     }
 
     public function create() {
+        //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
             $obj = new User;
             //En caso que falle la operación de guardar
@@ -15,10 +16,10 @@ class UserController extends AppController {
                 $this->data = Input::post('user');
                 return;
             }
-
+            //Mensaje de éxito y retorna al listado
             Flash::valid('Usuario creado');
             return Redirect::to();
-        }        
+        }
     }
 
     public function edit(int $id) {
@@ -30,10 +31,11 @@ class UserController extends AppController {
                 //se hacen persistente los datos en el formulario
                 $this->user = Input::post('user');
                 return;
-            } else {
-                Flash::valid('Usuario actualizado');
-                return Redirect::to();
             }
+            //Mensaje de éxito y retorna al listado
+            Flash::valid('Usuario actualizado');
+            return Redirect::to();
+
         }
     }
 
@@ -41,15 +43,15 @@ class UserController extends AppController {
         $this->user = (new User)->find((int) $id);
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
-            //Intenta actualizar la foto
+            //Si falla al intentar actualizar
             if (!$this->user->updatePhoto()) {
                 //se hacen persistente los datos en el formulario
                 $this->user = Input::post('user');
                 return;
-            } else {
-                Flash::valid('Foto de usuario actualizada');
-                return Redirect::to();
             }
+            //Mensaje de éxito y retorna al listado
+            Flash::valid('Foto de usuario actualizada');
+            return Redirect::to();
         }
     }
 
