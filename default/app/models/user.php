@@ -16,30 +16,23 @@ class User extends ActiveRecord {
         //Inicia la transacción
         $this->begin();
         if ($this->create($data)) {
-            if ($photo = $this->uploadPhoto('photo')) {
-                //Actualiza el campo foto
-                $this->photo = $photo;
-                if ($this->update()) {
-                    $this->commit();
-                    return true;
-                } else {
-                    $this->rollback();
-                    return false;
-                }
-            } else {
-                $this->rollback();
-                throw new Exception('No se pudo subir la imagen');
-            }
-        } else {
-            $this->rollback();
-            return false;
-        }
+            //Intenta actualizar la foto
+            if($this->updatePhoto()){
+                //Se confirma la transacción
+                $this->commit();
+                return true;
+            }           
+        } 
+        
+        //Si alga falla se regresa la transacción
+        $this->rollback();
+        return false;        
     }
 
     /**
      * Sube y actualiza la foto del usuario.
      * 
-     * @return boolean | null
+     * @return boolean|null
      */
     public function updatePhoto() {
         if ($photo = $this->uploadPhoto('photo')) {
