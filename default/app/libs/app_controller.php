@@ -19,7 +19,7 @@ class AppController extends Controller
 
     final protected function initialize()
     {
-
+        session_start();//Para mostrar los mensajes Flash luego de un redirect
     }
 
     final protected function finalize()
