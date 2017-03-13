@@ -1,6 +1,8 @@
 Subir imagen y datos con KumbiaPHP
 ======
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/henrystivens/upload-image-and-data/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/henrystivens/upload-image-and-data/?branch=master)
+
 ## Correr en Docker
 
 Como prerequisito debe tener instalado Docker en el sistema operatvo: [Obtener Docker](https://www.docker.com/products/overview)
@@ -15,7 +17,7 @@ Cambia el valor del parámetro --volume por el directorio que desees
 
 ### 2. Importar base de datos
 
-Importar el archivo *default/app/config/sql/file_and_data_upload.sql* 
+Importar el archivo *default/app/config/sql/file_and_data_upload.sql*
 
 ### 3. Correr Apache + PHP 7
 
