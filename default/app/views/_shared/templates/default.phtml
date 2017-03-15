@@ -11,10 +11,18 @@
         <!-- Custom css -->
         <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body>
+    <body>        
         <div class="container">           
+            <header class="row">
+                <div class="eight columns">
+                    <?= Html::img('kumbiaphp.svg', 'KumbiaPHP logo') ?>
+                </div>
+                <div class="four columns">
+                    App: <strong><?= basename(dirname(APP_PATH)) ?></strong> (<?= PRODUCTION ? 'Production' : 'Development' ?>)
+                </div>
+            </header
             <div class="row">
-                <div class="el column">
+                <div class="twelve columns">
                     <?php View::content() ?> 
                 </div>
             </div>
