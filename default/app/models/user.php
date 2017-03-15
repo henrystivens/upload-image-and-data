@@ -3,7 +3,8 @@
 /**
  * Clase para manejar los datos del usuario, tabla 'user'
  */
-class User extends ActiveRecord {
+class User extends ActiveRecord
+{
 
     /**
      * Guarda un usuario y sube la foto de un usuario.
@@ -12,12 +13,13 @@ class User extends ActiveRecord {
      * @return boolean
      * @throws Exception
      */
-    public function saveWithPhoto($data) {
+    public function saveWithPhoto($data)
+    {
         //Inicia la transacción
         $this->begin();
         if ($this->create($data)) {
             //Intenta actualizar la foto
-            if ($this->updatePhoto()){
+            if ($this->updatePhoto()) {
                 //Se confirma la transacción
                 $this->commit();
                 return true;
@@ -34,7 +36,8 @@ class User extends ActiveRecord {
      *
      * @return boolean|null
      */
-    public function updatePhoto() {
+    public function updatePhoto()
+    {
         if ($photo = $this->uploadPhoto('photo')) {
             //Actualiza el campo photo
             $this->photo = $photo;
@@ -48,7 +51,8 @@ class User extends ActiveRecord {
      * @param string $imageField
      * @return string|false
      */
-    public function uploadPhoto($imageField) {
+    public function uploadPhoto($imageField)
+    {
         //Usamos el adapter 'image'
         $file = Upload::factory($imageField, 'image');
         //le asignamos las extensiones a permitir
@@ -61,5 +65,4 @@ class User extends ActiveRecord {
         //Si falla al subir
         return false;
     }
-
 }
