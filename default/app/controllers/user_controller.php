@@ -1,12 +1,18 @@
 <?php
 
-class UserController extends AppController {
+/**
+ * Controlador para las acciones y vistas con el usuario
+ */
+class UserController extends AppController
+{
 
-    public function index(int $page = 1) { //validación 'int' con php7
-        $this->data = (new User)->paginate("page: $page", 'order: id desc');
+    public function index()
+    {
+        $this->data = (new User)->find();
     }
 
-    public function create() {
+    public function create()
+    {
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
             $obj = new User;
@@ -22,7 +28,8 @@ class UserController extends AppController {
         }
     }
 
-    public function edit(int $id) { //validación 'int' con php7
+    public function edit(int $id)//validación 'int' con php7
+    {
         //Carga los datos del usuario
         $this->user = (new User)->find($id);
         //se verifica si se ha enviado via POST los datos
@@ -39,7 +46,8 @@ class UserController extends AppController {
         }
     }
 
-    public function update_photo(int $id) { //validación 'int' con php7
+    public function update_photo(int $id)//validación 'int' con php7
+    {
         //Carga los datos del usuario
         $this->user = (new User)->find($id);
         //se verifica si se ha enviado via POST los datos
@@ -55,5 +63,4 @@ class UserController extends AppController {
             return;
         }
     }
-
 }
