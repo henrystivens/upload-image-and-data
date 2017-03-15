@@ -3,7 +3,7 @@ upload-image-and-data:
   dockerfile: Dockerfile
   build: .  
   ports:
-   - "8081:80"
+   - "8180:80"
   volumes:
    - .:/var/www  
   external_links:
