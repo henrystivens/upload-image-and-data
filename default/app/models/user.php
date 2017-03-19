@@ -17,8 +17,9 @@ class User extends ActiveRecord
     {
         //Inicia la transacción
         $this->begin();
+        //Intenta crear el usuario con los datos pasados
         if ($this->create($data)) {
-            //Intenta actualizar la foto
+            //Intenta subit y actualizar la foto
             if ($this->updatePhoto()) {
                 //Se confirma la transacción
                 $this->commit();
@@ -38,8 +39,9 @@ class User extends ActiveRecord
      */
     public function updatePhoto()
     {
+        //Intenta subir la foto que viene en el campo 'photo'
         if ($photo = $this->uploadPhoto('photo')) {
-            //Actualiza el campo photo
+            //Modifica el campo photo del usuario y lo intenta actualizar
             $this->photo = $photo;
             return $this->update();
         }
@@ -48,7 +50,7 @@ class User extends ActiveRecord
     /**
      * Sube la foto y retorna el nombre del archivo generado.
      *
-     * @param string $imageField
+     * @param string $imageField Nombre de archivo recibido por POST
      * @return string|false
      */
     public function uploadPhoto($imageField)
