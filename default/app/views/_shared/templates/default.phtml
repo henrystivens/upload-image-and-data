@@ -6,10 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSS using skeleton
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link rel="stylesheet" href="/css/normalize.css">
-        <link rel="stylesheet" href="/css/skeleton.css">
+        <?php Tag::css('normalize'); ?>
+        <?php Tag::css('skeleton'); ?>        
         <!-- Custom css -->
-        <link rel="stylesheet" href="/css/style.css">
+        <?php Tag::css('style'); ?>
+        <!-- Include css -->
+        <?= Html::includeCss(); ?>
     </head>
     <body>        
         <div class="container">           
@@ -20,7 +22,7 @@
                 <div class="four columns">
                     App: <strong><?= basename(dirname(APP_PATH)) ?></strong> (<?= PRODUCTION ? 'Production' : 'Development' ?>)
                 </div>
-            </header
+            </header>
             <div class="row">
                 <div class="twelve columns">
                     <?php View::content() ?> 
