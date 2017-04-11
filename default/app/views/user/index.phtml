@@ -1,7 +1,7 @@
 <h1>Lista de usuarios</h1>
-<?= Html::linkAction('create', 'Crear', 'class="button"') ?>
+<?= Html::linkAction('create', 'Crear', 'class="button"') ?> 
 <?php View::content() ?>
-<?php if (isset($data)) { ?>
+<?php if (count($data) > 0) { ?>
     <table class="u-full-width">
         <thead>
             <tr>            
@@ -12,8 +12,8 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($data as $item) { ?>
+        <tbody> 
+            <?php foreach ($data as $item) { ?> 
                 <tr>
                     <td><?= $item->name ?></td>
                     <td><?= $item->age ?></td>
