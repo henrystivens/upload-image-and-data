@@ -16,7 +16,7 @@ class UserController extends AppController
         //se verifica si se ha enviado via POST los datos
         if (Input::hasPost('user')) {
             $obj = new User;
-            //En caso que falle la operación de guardar
+            //Intenta guardar el usuario junto con la foto
             if ($obj->saveWithPhoto(Input::post('user'))) {
                 //Mensaje de éxito y retorna al listado
                 Flash::valid('Usuario creado');
