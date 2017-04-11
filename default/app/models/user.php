@@ -58,7 +58,7 @@ class User extends ActiveRecord
         //Usamos el adapter 'image'
         $file = Upload::factory($imageField, 'image');
         //le asignamos las extensiones a permitir
-        $file->setExtensions(array('jpg', 'png', 'gif'));
+        $file->setExtensions(array('jpg', 'png', 'gif', 'jpeg'));
         //Intenta subir el archivo
         if ($file->isUploaded()) {
             //Lo guarda usando un nombre de archivo aleatorio y lo retorna.
